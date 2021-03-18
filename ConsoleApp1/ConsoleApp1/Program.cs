@@ -1,9 +1,49 @@
-﻿using System;
+﻿using ConsoleApp1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-// test commita
+
+public class Algorytmy
+{
+    RandomNumberGenerator rng;
+    int iloscPrzedmiotow;
+    public Algorytmy(int Z, int Y) 
+    {
+        this.rng = new RandomNumberGenerator(Z);
+        this.iloscPrzedmiotow = Y;
+    }
+    public void sortujPlecak(List<Przedmiot> listaPrzedmiotow)
+    {
+        listaPrzedmiotow.Sort(delegate (Przedmiot x, Przedmiot y)
+        {
+            return x.getvalueToWeight().CompareTo(y.getvalueToWeight());
+        });
+
+        listaPrzedmiotow.Reverse();
+    }
+
+    public List<Przedmiot> generujPrzedmioty()
+    {
+        List<int> values = new List<int>();
+        List<int> weight = new List<int>();
+        List<Przedmiot> listaPrzedmiotow = new List<Przedmiot>();
+
+
+        for (int i = 0; i < this.iloscPrzedmiotow; i++)
+        {
+            values.Add(rng.nextInt(1, 29));
+            weight.Add(rng.nextInt(1, 29));
+        }
+
+        for (int i = 0; i < this.iloscPrzedmiotow; i++)
+        {
+            listaPrzedmiotow.Add(new Przedmiot(values[i], weight[i], i + 1));
+        }
+        return listaPrzedmiotow;
+    }
+}
 public class Przedmiot
 {
     int v; //wartość
@@ -81,6 +121,7 @@ public class Plecak
 
     public void wypiszPlecak()
     {
+        Console.WriteLine("\n \nPrzedmioty które został umieszczone w plecaku:");
         foreach (var x in this.przedmiotyWPlecaku)
         {
                 x.WypiszPrzedmioty();
@@ -112,47 +153,20 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            int iloscPrzedmiotow = 10;
             Plecak plecaczek = new Plecak();
-            
-
-
-            RandomNumberGenerator rng = new RandomNumberGenerator(1);
-
-            List<int> values = new List<int>();
-            List<int> weight = new List<int>();
-            List<Przedmiot> listaPrzedmiotow = new List<Przedmiot>();
-
-
-            for (int i = 0; i < iloscPrzedmiotow; i++)
-            {
-                values.Add(rng.nextInt(1, 29));
-                weight.Add(rng.nextInt(1, 29));
-            }
-
-            for (int i = 0; i < iloscPrzedmiotow; i++)
-            {
-                listaPrzedmiotow.Add(new Przedmiot(values[i], weight[i], i+1));
-            }
-
-            listaPrzedmiotow.Sort(delegate (Przedmiot x, Przedmiot y)
-            {
-                return x.getvalueToWeight().CompareTo(y.getvalueToWeight());
-            });
-
-            listaPrzedmiotow.Reverse();
-
-
-            plecaczek.DodawaniePrzedmiotowDoPlecaka(listaPrzedmiotow);
-
-
-            plecaczek.wypiszPlecak();
+            Algorytmy algorytm = new Algorytmy(1,10);
+            List<Przedmiot> listaPrzedmiotow = algorytm.generujPrzedmioty();
 
 
             foreach (var przedmiot in listaPrzedmiotow)
             {
                 przedmiot.WypiszPrzedmioty();
             }
+
+            algorytm.sortujPlecak(listaPrzedmiotow);
+            plecaczek.DodawaniePrzedmiotowDoPlecaka(listaPrzedmiotow);
+            plecaczek.wypiszPlecak();
+
 
             Console.Read();
         }
