@@ -12,21 +12,18 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             Plecak plecaczek = new Plecak();
-            Algorytmy algorytm = new Algorytmy(1,10);
+            Algorytmy algorytm = new Algorytmy(1,10); // Algorytmy(seed, iloscPrzedmiotow) <- konstruktor
             List<Przedmiot> listaPrzedmiotow = algorytm.generujPrzedmioty();
-
 
             foreach (var przedmiot in listaPrzedmiotow)
             {
                 przedmiot.WypiszPrzedmioty();
             }
-
             algorytm.sortujPlecak(listaPrzedmiotow);
             plecaczek.DodawaniePrzedmiotowDoPlecaka(listaPrzedmiotow);
             plecaczek.wypiszPlecak();
 
-
-            Console.Read();
+            Console.Read(); // dodane aby aplikacja się nie zamknęła 
         }
     }
 }
