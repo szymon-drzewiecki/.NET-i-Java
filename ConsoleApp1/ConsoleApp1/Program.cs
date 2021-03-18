@@ -20,7 +20,7 @@ public class Przedmiot
         this.czyMiesci = false;
         this.valueToWeight = (float)v / (float)w;
     }
-
+    //test commita
     public int getv()
     {
         return this.v;
