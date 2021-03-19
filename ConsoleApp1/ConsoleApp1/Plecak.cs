@@ -49,6 +49,17 @@ namespace ConsoleApp1
 
         }
 
+        public string getPlecak()
+        {
+            string plecak = "";
+            foreach (var x in this.przedmiotyWPlecaku)
+            {
+               plecak += x.getPrzedmiot();
+            }
+            plecak += Environment.NewLine + "Used space:" + this.usedSpace;
+            return plecak;
+        }
+
         public List<Przedmiot> getprzedmiotyWPlecaku()
         {
             return this.przedmiotyWPlecaku;

@@ -50,7 +50,7 @@ namespace ConsoleApp1
 
         public string getPrzedmiot()
         {
-            string przedmiot = this.numerPrzedmiotu + ". value to weight:" + this.valueToWeight.ToString("f2") + " value: " + this.v + " weight: " + this.w + "\n";
+            string przedmiot = this.numerPrzedmiotu + ". value to weight:" + this.valueToWeight.ToString("f2") + " value: " + this.v + " weight: " + this.w + Environment.NewLine;
             return przedmiot;
         }
 
