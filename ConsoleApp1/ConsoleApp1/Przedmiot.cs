@@ -48,5 +48,11 @@ namespace ConsoleApp1
             Console.WriteLine(this.numerPrzedmiotu + ". value to weight:" + this.valueToWeight.ToString("f2") + " value: " + this.v + " weight: " + this.w);
         }
 
+        public string getPrzedmiot()
+        {
+            string przedmiot = this.numerPrzedmiotu + ". value to weight:" + this.valueToWeight.ToString("f2") + " value: " + this.v + " weight: " + this.w + "\n";
+            return przedmiot;
+        }
+
     }
 }

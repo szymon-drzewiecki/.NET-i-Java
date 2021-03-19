@@ -37,11 +37,12 @@ namespace WindowsFormsApp1
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textPrzedmioty = new System.Windows.Forms.TextBox();
+            this.textBag = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(310, 127);
+            this.button1.Location = new System.Drawing.Point(330, 124);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 36);
             this.button1.TabIndex = 0;
@@ -97,17 +98,26 @@ namespace WindowsFormsApp1
             // 
             // textPrzedmioty
             // 
-            this.textPrzedmioty.Location = new System.Drawing.Point(46, 258);
+            this.textPrzedmioty.Location = new System.Drawing.Point(35, 199);
             this.textPrzedmioty.Multiline = true;
             this.textPrzedmioty.Name = "textPrzedmioty";
-            this.textPrzedmioty.Size = new System.Drawing.Size(360, 22);
+            this.textPrzedmioty.Size = new System.Drawing.Size(360, 200);
             this.textPrzedmioty.TabIndex = 8;
+            // 
+            // textBag
+            // 
+            this.textBag.Location = new System.Drawing.Point(411, 199);
+            this.textBag.Multiline = true;
+            this.textBag.Name = "textBag";
+            this.textBag.Size = new System.Drawing.Size(360, 200);
+            this.textBag.TabIndex = 9;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBag);
             this.Controls.Add(this.textPrzedmioty);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -133,6 +143,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textPrzedmioty;
+        private System.Windows.Forms.TextBox textBag;
     }
 }
 
