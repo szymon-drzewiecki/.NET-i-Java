@@ -12,9 +12,9 @@ namespace ConsoleApp1
         int usedSpace;
         List<Przedmiot> przedmiotyWPlecaku;
 
-        public Plecak()
+        public Plecak(int capacity)
         {
-            this.C = 50;
+            this.C = capacity;
             this.usedSpace = 0;
             this.przedmiotyWPlecaku = new List<Przedmiot>();
         }

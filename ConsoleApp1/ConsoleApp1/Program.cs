@@ -13,7 +13,7 @@ namespace ConsoleApp1
         {
             Console.WriteLine("Podaj seed losowania:");
             int Z = Convert.ToInt32(Console.ReadLine());
-            Plecak plecaczek = new Plecak();
+            Plecak plecaczek = new Plecak(50);
             Algorytmy algorytm = new Algorytmy(Z,10); // Algorytmy(seed, iloscPrzedmiotow) <- konstruktor
             List<Przedmiot> listaPrzedmiotow = algorytm.generujPrzedmioty();
 

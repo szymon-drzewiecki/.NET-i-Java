@@ -16,7 +16,7 @@ namespace TesterPlecaka
             przedmioty.Add(new Przedmiot(1, 60, 2));
             przedmioty.Add(new Przedmiot(1, 75, 3));
 
-            var plecaczek = new Plecak();
+            var plecaczek = new Plecak(50);
             plecaczek.DodawaniePrzedmiotowDoPlecaka(przedmioty);
             Assert.IsTrue(plecaczek.getprzedmiotyWPlecaku().Count == 0);
         }
@@ -28,7 +28,7 @@ namespace TesterPlecaka
             przedmioty.Add(new Przedmiot(1, 1, 1));
             przedmioty.Add(new Przedmiot(1, 1000, 2));
 
-            var plecaczek = new Plecak();
+            var plecaczek = new Plecak(50);
             plecaczek.DodawaniePrzedmiotowDoPlecaka(przedmioty);
             Assert.IsNotNull(plecaczek.getprzedmiotyWPlecaku());
         }
@@ -49,8 +49,8 @@ namespace TesterPlecaka
             przedmioty1.Add(przedmiot2);
             przedmioty1.Add(przedmiot1);
 
-            var plecaczek = new Plecak();
-            var plecaczek1 = new Plecak();
+            var plecaczek = new Plecak(50);
+            var plecaczek1 = new Plecak(50);
             plecaczek.DodawaniePrzedmiotowDoPlecaka(przedmioty);
             plecaczek1.DodawaniePrzedmiotowDoPlecaka(przedmioty1);
 
@@ -66,7 +66,7 @@ namespace TesterPlecaka
             var przedmioty = new List<Przedmiot>();
             RandomNumberGenerator rng = new RandomNumberGenerator(1);
             int iloscPrzedmiotow = 5;
-            var plecaczek = new Plecak();
+            var plecaczek = new Plecak(50);
             for (int i = 0; i < iloscPrzedmiotow; i++)
             {
                 values.Add(rng.nextInt(1, 29));
