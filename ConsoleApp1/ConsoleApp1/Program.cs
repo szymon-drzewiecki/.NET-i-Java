@@ -11,8 +11,10 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Podaj seed losowania:");
+            int Z = Convert.ToInt32(Console.ReadLine());
             Plecak plecaczek = new Plecak();
-            Algorytmy algorytm = new Algorytmy(1,10); // Algorytmy(seed, iloscPrzedmiotow) <- konstruktor
+            Algorytmy algorytm = new Algorytmy(Z,10); // Algorytmy(seed, iloscPrzedmiotow) <- konstruktor
             List<Przedmiot> listaPrzedmiotow = algorytm.generujPrzedmioty();
 
             foreach (var przedmiot in listaPrzedmiotow)
