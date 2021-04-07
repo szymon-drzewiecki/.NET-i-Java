@@ -13,16 +13,42 @@ namespace Zadanie2
     {
         static void Main(string[] args)
         {
-            string call = "http://openexchangerates.org/api/historical/2021-03-25.json?app_id=23e326842d4044d1a971b4fb0359c5a3";
+            var context = new KlasaGlowna();
+
+            var databaseName = context.Database.Connection.Database;
+            Console.WriteLine(databaseName);
+           //Database.Delete(databaseName);
+
+            Console.WriteLine("Enter day:");
+            string day = Console.ReadLine();
+            Console.WriteLine("Enter month:");
+            string month = Console.ReadLine();
+            Console.WriteLine("Enter year:");
+            string year = Console.ReadLine();
+            string date_of_data = year.ToString() + "-" + month.ToString() + "-" + day.ToString();
+
+
+            var checkIfExists = context.ZestawyDanych.Where(x => x.date == date_of_data).ToList<Dane>();
+            if (checkIfExists != null)
+            {
+                Console.WriteLine("Hej");
+                Environment.Exit(0);
+            }
+
+
+            string call = "http://openexchangerates.org/api/historical/" + date_of_data +".json?app_id=23e326842d4044d1a971b4fb0359c5a3";
             Task<string> Task = LoadJSON(call);
             string json = Task.Result;
             Dane obiektKlasy = JsonConvert.DeserializeObject<Dane>(json);
+            obiektKlasy.date = date_of_data;
            // Console.WriteLine(obiektKlasy.timestamp + " " + Convert.ToString(obiektKlasy.rates.PLN) + " " + Convert.ToString(obiektKlasy.rates.BTC));
            // Console.Read();
 
-            var context = new KlasaGlowna();
+            
             context.ZestawyDanych.Add(obiektKlasy);
             context.SaveChanges();
+
+
 
             var dane = context.ZestawyDanych.Where(d => d.rates.PLN > 0).ToList<Dane>();
 

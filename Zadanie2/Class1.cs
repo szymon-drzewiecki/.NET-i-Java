@@ -9,9 +9,9 @@ namespace Zadanie2
 {
     public class Dane
     {
+        public string date { get; set; }
         public int Id { get; set; }
         public int timestamp { get; set; }
-
         public Przeliczniki rates { get; set; }
 
     }
