@@ -74,17 +74,31 @@ namespace Zadanie2
             }
         }
 
-        void WriteAll(KlasaGlowna context, Dane obiektyKlasy)
+        string WriteAll(KlasaGlowna context, Dane obiektyKlasy, string currency)
         {
-            var allDownloaded = context.ZestawyDanych.Where(d => d.date == date_of_data).ToList<Dane>();
-            Console.WriteLine("Dane dla dnia: " + date_of_data);
-            foreach (var d in justDownloaded)
+            string retString = "";
+            var allDownloaded = context.ZestawyDanych.SqlQuery("select * from ZestawyDanych").ToList<Dane>();
+            foreach (var d in allDownloaded)
             {
+                /*
+                if (currency == "EUR")
+                retString += d.date + "   " + "EUR:" + (d.rates.EUR).ToString();
+                else if (currency == "PLN")
+                    retString += d.date + "   " + "PLN:" + (d.rates.PLN).ToString();
+                */
+
+                retString = d.date + "   " + (d.rates.PLN).ToString() + Environment.NewLine;
+
+                /*
+                Console.WriteLine("Dane dla dnia: " + d.date);
                 Console.WriteLine("PLN: {0}", d.rates.PLN);
                 Console.WriteLine("EUR: {0}", d.rates.EUR);
                 Console.WriteLine("BTC: {0}", d.rates.BTC);
                 Console.WriteLine("COP: {0}", d.rates.COP);
+                */
+                
             }
+            return retString;
         }
 
         static async Task<string> LoadJSON(string call)

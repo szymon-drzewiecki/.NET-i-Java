@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace Zadanie2GUI
 {
-    class Klasy
+    public class Dane
     {
+        public string date { get; set; }
+        public int Id { get; set; }
+        public int timestamp { get; set; }
+        public Przeliczniki rates { get; set; }
+
+    }
+
+    public class Przeliczniki
+    {
+        public float PLN { get; set; }
+        public float EUR { get; set; }
+        public float BTC { get; set; }
+        public float COP { get; set; }
     }
 }
