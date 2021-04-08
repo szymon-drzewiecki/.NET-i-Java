@@ -27,11 +27,12 @@ namespace Zadanie2
             string year = Console.ReadLine();
             string date_of_data = year.ToString() + "-" + month.ToString() + "-" + day.ToString();
 
-
-            var checkIfExists = context.ZestawyDanych.Where(x => x.date == date_of_data).ToList<Dane>();
-            if (checkIfExists != null)
+            var checkIfExists = new List<Dane>();
+            checkIfExists = context.ZestawyDanych.Where(x => x.date == date_of_data).ToList<Dane>();
+            if (checkIfExists.Count != 0)
             {
                 Console.WriteLine("Hej");
+                Console.Read();
                 Environment.Exit(0);
             }
 
