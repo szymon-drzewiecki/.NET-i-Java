@@ -27,16 +27,19 @@ namespace Zadanie2
             string year = Console.ReadLine();
             string date_of_data = year.ToString() + "-" + month.ToString() + "-" + day.ToString();
 
-            var checkIfExists = new List<Dane>();
-            checkIfExists = context.ZestawyDanych.Where(x => x.date == date_of_data).ToList<Dane>();
-            if (checkIfExists.Count != 0)
+            var ifExists = new List<Dane>();
+            ifExists = context.ZestawyDanych.Where(x => x.date == date_of_data).ToList<Dane>();
+            if (ifExists.Count != 0)
             {
-                Console.WriteLine("Hej");
+                Console.WriteLine("Hej, mamy to już w DB! :)");
+                Console.WriteLine("Dane dla dnia: " + date_of_data);
+                foreach (var x in ifExists)
+                    Console.WriteLine("PLN: {0}", x.rates.PLN);
                 Console.Read();
                 Environment.Exit(0);
             }
 
-
+            Console.WriteLine("Hmm... Tego w naszej bazie nie ma, pobieranko...");
             string call = "http://openexchangerates.org/api/historical/" + date_of_data +".json?app_id=23e326842d4044d1a971b4fb0359c5a3";
             Task<string> Task = LoadJSON(call);
             string json = Task.Result;
@@ -49,14 +52,10 @@ namespace Zadanie2
             context.ZestawyDanych.Add(obiektKlasy);
             context.SaveChanges();
 
-
-
-            var dane = context.ZestawyDanych.Where(d => d.rates.PLN > 0).ToList<Dane>();
-
+            var justDownloaded = context.ZestawyDanych.Where(d => d.date == date_of_data).ToList<Dane>();
+            Console.WriteLine("Dane dla dnia: " + date_of_data);
             // var rates = context.ZestawyDanych.SqlQuery("select * from ZestawyDanych").ToList<Dane>();
-
-
-            foreach (var d in dane)
+            foreach (var d in justDownloaded)
                 Console.WriteLine("PLN: {0}", d.rates.PLN);
             Console.Read();
         }
