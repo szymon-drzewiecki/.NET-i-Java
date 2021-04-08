@@ -52,12 +52,39 @@ namespace Zadanie2
             context.ZestawyDanych.Add(obiektKlasy);
             context.SaveChanges();
 
+
             var justDownloaded = context.ZestawyDanych.Where(d => d.date == date_of_data).ToList<Dane>();
             Console.WriteLine("Dane dla dnia: " + date_of_data);
             // var rates = context.ZestawyDanych.SqlQuery("select * from ZestawyDanych").ToList<Dane>();
             foreach (var d in justDownloaded)
                 Console.WriteLine("PLN: {0}", d.rates.PLN);
             Console.Read();
+        }
+
+        void WriteByDay(KlasaGlowna context, Dane obiektyKlasy, string date_of_data)
+        {
+            var justDownloaded = context.ZestawyDanych.Where(d => d.date == date_of_data).ToList<Dane>();
+            Console.WriteLine("Dane dla dnia: " + date_of_data);
+            foreach (var d in justDownloaded)
+            {
+                Console.WriteLine("PLN: {0}", d.rates.PLN);
+                Console.WriteLine("EUR: {0}", d.rates.EUR);
+                Console.WriteLine("BTC: {0}", d.rates.BTC);
+                Console.WriteLine("COP: {0}", d.rates.COP);
+            }
+        }
+
+        void WriteAll(KlasaGlowna context, Dane obiektyKlasy)
+        {
+            var allDownloaded = context.ZestawyDanych.Where(d => d.date == date_of_data).ToList<Dane>();
+            Console.WriteLine("Dane dla dnia: " + date_of_data);
+            foreach (var d in justDownloaded)
+            {
+                Console.WriteLine("PLN: {0}", d.rates.PLN);
+                Console.WriteLine("EUR: {0}", d.rates.EUR);
+                Console.WriteLine("BTC: {0}", d.rates.BTC);
+                Console.WriteLine("COP: {0}", d.rates.COP);
+            }
         }
 
         static async Task<string> LoadJSON(string call)
