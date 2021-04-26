@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-library", "E-library.csproj", "{591EAA7E-49BD-4872-BFC1-9F5AFC5FAAF1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{591EAA7E-49BD-4872-BFC1-9F5AFC5FAAF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{591EAA7E-49BD-4872-BFC1-9F5AFC5FAAF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{591EAA7E-49BD-4872-BFC1-9F5AFC5FAAF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{591EAA7E-49BD-4872-BFC1-9F5AFC5FAAF1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D03C90BB-17AD-412E-8FC7-6A3BF7CE8FA6}
+	EndGlobalSection
+EndGlobal

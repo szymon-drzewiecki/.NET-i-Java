@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
@@ -8,8 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using E_library.Data;
 
-namespace KursyWalut
+namespace E_library
 {
     public class Startup
     {
@@ -24,6 +26,9 @@ namespace KursyWalut
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.AddDbContext<E_libraryContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("E_libraryContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

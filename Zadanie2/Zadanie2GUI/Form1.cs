@@ -41,11 +41,11 @@ namespace Zadanie2GUI
             }
             else
             {
-                textBox1.Text = "przed pobraniem";
+                //textBox1.Text = "przed pobraniem";
                 string call = "http://openexchangerates.org/api/historical/" + date_string + ".json?app_id=23e326842d4044d1a971b4fb0359c5a3";
                 HttpClient httpClient = new HttpClient();
                 string json = await httpClient.GetStringAsync(call);
-                textBox1.Text = json;
+                //textBox1.Text = json;
                 Dane obiektKlasy = JsonConvert.DeserializeObject<Dane>(json);
                 obiektKlasy.date = date_string;
                 context.ZestawyDanych.Add(obiektKlasy);
@@ -117,6 +117,11 @@ namespace Zadanie2GUI
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
         }
