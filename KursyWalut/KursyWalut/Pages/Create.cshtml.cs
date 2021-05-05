@@ -41,27 +41,35 @@ namespace KursyWalut.Pages
             string timeDate = Dane.date;
 
              string todayDate = DateTime.Now.ToString("yyyy-MM-dd");
-            if (Int32.Parse(timeDate.Substring(0, 4)) > Int32.Parse(todayDate.Substring(0, 4)))
-            {
-                                return RedirectToPage("./Error");
-            }else if (Int32.Parse(timeDate.Substring(0, 4)) == Int32.Parse(todayDate.Substring(0, 4)))
-            {
-                if (Int32.Parse(timeDate.Substring(5, 2)) > Int32.Parse(todayDate.Substring(5, 2)))
-                {
-                                        return RedirectToPage("./Error");
-                }
-                if (Int32.Parse(timeDate.Substring(5, 2)) == Int32.Parse(todayDate.Substring(5, 2)))
-                {
-                    if (Int32.Parse(timeDate.Substring(8, 2)) > Int32.Parse(todayDate.Substring(8, 2)))
-                    {
-                        return RedirectToPage("./Error");
-                    }
-                }
-            }
+
+
 
             if (Regex.IsMatch(timeDate, @"^\d{4}$|^\d{4}-((0?\d)|(1[012]))-(((0?|[12])\d)|3[01])$", RegexOptions.IgnoreCase))
             {
+                if (Int32.Parse(timeDate.Substring(0, 4)) > Int32.Parse(todayDate.Substring(0, 4)))
+                {
+                    return RedirectToPage("./Error");
+                }
+                else if (Int32.Parse(timeDate.Substring(0, 4)) == Int32.Parse(todayDate.Substring(0, 4)))
+                {
+                    if (Int32.Parse(timeDate.Substring(5, 2)) > Int32.Parse(todayDate.Substring(5, 2)))
+                    {
+                        return RedirectToPage("./Error");
+                    }
+                    if (Int32.Parse(timeDate.Substring(5, 2)) == Int32.Parse(todayDate.Substring(5, 2)))
+                    {
+                        if (Int32.Parse(timeDate.Substring(8, 2)) > Int32.Parse(todayDate.Substring(8, 2)))
+                        {
+                            return RedirectToPage("./Error");
+                        }
+                    }
+                }
 
+
+                if (Int32.Parse(timeDate.Substring(0, 4)) < 2000)
+                {
+                    return RedirectToPage("./Error");
+                }
             }
             else
             {
