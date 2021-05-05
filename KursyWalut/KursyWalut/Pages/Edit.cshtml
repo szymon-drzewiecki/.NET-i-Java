@@ -1,0 +1,60 @@
+﻿@page
+@model KursyWalut.Pages.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Dane</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Dane.ID" />
+            <div class="form-group">
+                <label asp-for="Dane.date" class="control-label"></label>
+                <input asp-for="Dane.date" class="form-control" />
+                <span asp-validation-for="Dane.date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dane.timestamp" class="control-label"></label>
+                <input asp-for="Dane.timestamp" class="form-control" />
+                <span asp-validation-for="Dane.timestamp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dane.PLN" class="control-label"></label>
+                <input asp-for="Dane.PLN" class="form-control" />
+                <span asp-validation-for="Dane.PLN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dane.EUR" class="control-label"></label>
+                <input asp-for="Dane.EUR" class="form-control" />
+                <span asp-validation-for="Dane.EUR" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dane.BTC" class="control-label"></label>
+                <input asp-for="Dane.BTC" class="form-control" />
+                <span asp-validation-for="Dane.BTC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dane.COP" class="control-label"></label>
+                <input asp-for="Dane.COP" class="form-control" />
+                <span asp-validation-for="Dane.COP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

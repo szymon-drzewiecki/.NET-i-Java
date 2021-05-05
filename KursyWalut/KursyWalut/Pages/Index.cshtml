@@ -1,0 +1,66 @@
+﻿@page
+@model KursyWalut.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Dane[0].date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dane[0].timestamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dane[0].PLN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dane[0].EUR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dane[0].BTC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dane[0].COP)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Dane) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.timestamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PLN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EUR)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BTC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.COP)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
