@@ -1,25 +1,33 @@
 package zadanie1;
 import java.awt.*;
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 
 class Ball extends JPanel implements Runnable
 {
-    private boolean xUp, yUp, bouncing;
-    private int x, y, xDx, yDy;
-    private final int MAX_X = 800, MAX_Y = 460;
+    Random random = new Random();
+    private boolean isGoingRight;
+    private boolean isGoingUp;
+    private int x, y, deltaX, deltaY;
+    private int sizeX = 800, sizeY = 520;
+    private String colour;
+    private int size;
 
-    public Ball()
+    public Ball(String colour, int size)
     {
-        xUp = false;
-        yUp = false;
-        xDx = 1;
-        yDy = 1;
-        bouncing = true;
-
+        this.isGoingRight = random.nextBoolean();
+        this.isGoingUp = random.nextBoolean();
+        this.deltaX = random.nextInt(15);
+        this.deltaY = random.nextInt(15);
+        this.colour = colour;
+        this.size = size;
+        this.x = 400;
+        this.y = 240;
 
         setOpaque(false);
-        setPreferredSize(new Dimension( MAX_X, MAX_Y));
+        setPreferredSize(new Dimension(sizeX, sizeY));
     }
     public void run()
     {
@@ -27,59 +35,86 @@ class Ball extends JPanel implements Runnable
 
             try {
                 Thread.sleep( 20 );
+            }catch ( InterruptedException exception ) {
+                System.err.println( exception );
             }
 
-            catch ( InterruptedException exception ) {
-                System.err.println( exception.toString() );
-            }
-
-
-            if ( xUp == true )
-                x += xDx;
+            if (isGoingRight)
+                x += deltaX;
             else
-                x -= xDx;
+                x -= deltaX;
 
-
-            if ( yUp == true )
-                y += yDy;
+            if (isGoingUp)
+                y += deltaY;
             else
-                y -= yDy;
+                y -= deltaY;
 
-            if ( y <= 0 ) {
-                yUp = true;
-                yDy = ( int ) ( Math.random() * 5 + 2 );
+            if (y <= 0) {
+                isGoingUp = true;
+            }else if ( y >= sizeY - this.size ) {
+                isGoingUp = false;
             }
 
-            else if ( y >= MAX_Y - 30 ) {
-                yDy = ( int ) ( Math.random() * 5 + 2 );
-                yUp = false;
+            if ( x <= 0) {
+                isGoingRight = true;
+            }else if ( x >= sizeX - this.size ) {
+                isGoingRight = false;
             }
-
-            if ( x <= 0 ) {
-                xUp = true;
-                xDx = ( int ) ( Math.random() * 5 + 2 );
-            }
-
-            else if ( x >= MAX_X - 30 ) {
-                xUp = false;
-                xDx = ( int ) ( Math.random() * 5 + 2 );
-            }
-
             repaint();
-
         }
-
     }
 
 
     public void paintComponent(Graphics g)
     {
-
         super.paintComponent(g);
-        if ( bouncing ) {
-            g.setColor( Color.magenta );
-            g.fillOval( x, y, 30, 30 );
+
+        if (this.colour == "green")
+        {
+            g.setColor( Color.green );
+        }else if(this.colour == "red")
+        {
+            g.setColor( Color.red );
+        }else if(this.colour == "blue"){
+            g.setColor( Color.blue );
         }
 
+        g.fillOval( x, y, this.size, this.size );
+    }
+
+    static class BouncingBalls extends JFrame {
+
+        public BouncingBalls() {
+
+            Random random = new Random();
+            setResizable(false);
+            setSize(800, 520);
+            String[] ballColours = {"green", "red", "blue"};
+            int[]    ballSizes = {24, 37, 45, 19, 58, 63, 30};
+            int numberOfBalls = 25;
+
+            ArrayList<Ball> listOfBalls = new ArrayList<>();
+            for (int i = 0; i < numberOfBalls; ++i){
+                listOfBalls.add(i, new Ball(ballColours[random.nextInt(3)], ballSizes[random.nextInt(7)]));
+            }
+
+
+            for (int i = 0; i < numberOfBalls - 1; ++i){
+                listOfBalls.get(i).add(listOfBalls.get(i+1));
+            }
+
+            getContentPane().add(listOfBalls.get(0));
+            setVisible(true);
+
+            ArrayList <Thread> listOfThreads = new ArrayList<>();
+            for (int i = 0; i < numberOfBalls; ++i) {
+                listOfThreads.add(i, new Thread(listOfBalls.get(i)));
+            }
+
+            for (int i = 0; i < numberOfBalls; ++i){
+                listOfThreads.get(i).start();
+            }
+
+        }
     }
 }
